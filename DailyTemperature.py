@@ -42,8 +42,7 @@ def highest_month(year_dict):
     temp_list = []
     result = []
     higher = 0
-    for month in year_dict01:
-        appended = year_dict01[month]
+    for appended in year_dict01.values():
         temp_list.append(appended)
     for temps in temp_list:
         a = round(sum(temps) / len(temps), 4)
@@ -59,8 +58,7 @@ def lowest_month(year_dict):
     temp_list = []
     result = []
     lower = 10000000
-    for month in year_dict01:
-        appended = year_dict01[month]
+    for appended in year_dict01.values():
         temp_list.append(appended)
     for temps in temp_list:
         a = round(sum(temps) / len(temps), 4)
@@ -72,12 +70,10 @@ def lowest_month(year_dict):
 
 def average_temp_per_year(year_dict):
     temp_dict = []
-    for i in year_dict:
-        month_dict = year_dict[i]
+    for i, month_dict in year_dict.items():
         total = 0
         total_length = 0
-        for month in month_dict:
-            month_list = month_dict[month]
+        for month_list in month_dict.values():
             summed = sum(month_list)
             total += summed
             total_length += len(month_list)
@@ -89,8 +85,7 @@ def average_temp_per_year(year_dict):
 
 def average_temp_per_month(months):
     list_ = []
-    for month in months.keys():
-        month_list = months[month]
+    for month, month_list in months.items():
         summed = sum(month_list)
         avg = summed / len(month_list)
         avg_dict = (month, round(avg, 4))
@@ -163,8 +158,7 @@ def main():
         temp_dict = lowest_month(year_dict)
     if i == 6:
         years = []
-        for year in year_dict.keys():
-            months = year_dict[year]
+        for year, months in year_dict.items():
             avg_dict = average_temp_per_month(months)
             num_dict = {}
             for j in avg_dict:
