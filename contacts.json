@@ -35,18 +35,5 @@
             "0612345678",
             "0201234567"
         ]
-    },
-    {
-        "id": 4,
-        "first_name": "John",
-        "last_name": "Doe",
-        "emails": [
-            "Hello@apple.me",
-            "joshuaburg2004@hotmail.nl"
-        ],
-        "phone_numbers": [
-            "0615294979",
-            "0652720656"
-        ]
     }
 ]
