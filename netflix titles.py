@@ -69,8 +69,7 @@ def director2(file_cont):
 
 def dict_to_tuple(dict_):
     list_ = []
-    for person in dict_.keys():
-        nums = dict_[person]
+    for person, nums in dict_.items():
         tuple_ = (person, nums[0], nums[1])
         list_.append(tuple_)
     return sorted(list_)
