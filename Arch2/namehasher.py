@@ -1,22 +1,22 @@
 dict_key_value = {}
-dict_value_key = {}
 encoded_values = []
 decoded_values = []
 
 
 # create a function that given the input string converts it to the encoded equivalent based on the provided or already set key/hashmap
 # make sure to only convert values that are in the key, if the value is not present, use its own value
-def encode_string(data: str, key: str = 'a_b?c9d6e1f4g!h:i<j|k{l0m@n7o+p~q2r+s/t=u^v3w]x(y-z>A*B8C;D%E#F}G5H)I[J$') -> str:
-    output = []
-    dict_key_value = dict(zip(key[::2], key[1::2]))
+def encode_string(data: str, key: str = None) -> str:
+    if dict_key_value == {}:
+        set_dict_key(key)
     output = ''.join(map(lambda char: dict_key_value.get(char, char), data))
     return output
 
 
 # create a function that given the input string converts it to the decoded equivalent based on the provided or already set key/hashmap
 # make sure to only decode values that are in the key, if the value is not present, use its own value
-def decode_string(data: str, key: str = 'a_b?c9d6e1f4g!h:i<j|k{l0m@n7o+p~q2r+s/t=u^v3w]x(y-z>A*B8C;D%E#F}G5H)I[J$') -> str:
-    dict_key_value = dict(zip(key[::2], key[1::2]))
+def decode_string(data: str, key: str = None) -> str:
+    if dict_key_value == {}:
+        set_dict_key(key)
     dict_value_key = {v: k for k, v in dict_key_value.items()}
     output = ''.join(map(lambda char: dict_value_key.get(char, char), data))
     return output
@@ -25,7 +25,7 @@ def decode_string(data: str, key: str = 'a_b?c9d6e1f4g!h:i<j|k{l0m@n7o+p~q2r+s/t
 # you can use the already created encode function when looping through the list
 # tip! make use of the map function within python with a lambda to call the internal function with all elements
 # as a return value, you should return a list with Tuples containing the decoded value as first value and the encode value as second value
-def encode_list(data: list, key: str = 'a_b?c9d6e1f4g!h:i<j|k{l0m@n7o+p~q2r+s/t=u^v3w]x(y-z>A*B8C;D%E#F}G5H)I[J$') -> list:
+def encode_list(data: list, key: str = None) -> list:
     output_list = []
     for item in data:
         output = encode_string(item, key)
@@ -36,7 +36,7 @@ def encode_list(data: list, key: str = 'a_b?c9d6e1f4g!h:i<j|k{l0m@n7o+p~q2r+s/t=
 # you can use the already created decode function when looping through the list
 # tip! make use of the map function within python with a lambda to call the internal function with all elements
 # as a return value, you should return a list with Tuples containing the decoded value as first value and the encode value as second value
-def decode_list(data: list, key: str = 'a_b?c9d6e1f4g!h:i<j|k{l0m@n7o+p~q2r+s/t=u^v3w]x(y-z>A*B8C;D%E#F}G5H)I[J$') -> list:
+def decode_list(data: list, key: str = None) -> list:
     output_list = []
     for item in data:
         output = decode_string(item, key)
@@ -66,6 +66,16 @@ def set_hashmap(key: str) -> None:
         return list(key)
 
 
+def set_dict_key(key: str) -> None:
+    if len(key) % 2 != 0:
+        print("Invalid hashvalue input")
+        print(key)
+        return False
+    else:
+        key = list(key)
+        dict_key_value.update(zip(key[::2], key[1::2]))
+
+
 # build menu structure as following
 # the input can be case-insensitive (so E and e are valid inputs)
 # [E] Encode value to hashed value
@@ -79,7 +89,6 @@ def main():
         key = key1
     else:
         key = 'a_b?c9d6e1f4g!h:i<j|k{l0m@n7o+p~q2r+s/t=u^v3w]x(y-z>A*B8C;D%E#F}G5H)I[J$'
-    key = set_hashmap(key)
     move = ''
     if key == False:
         move = 'Q'
