@@ -30,6 +30,7 @@ def main():
         content = scrub(i)
         if content is False:
             print('Error')
+            return
         for res in content:
             print(res)
 
