@@ -2,14 +2,17 @@ def sorter(ine):
     my_list = []
     try:
         with open(ine, 'r') as f:
+            longest = 0
             for line in f:
                 line = line.split(' ')
                 for word in line:
                     word = word.strip()
                     my_list.sort(key=len)
-                    if len(my_list) == 0:
+                    if longest < len(word):
+                        my_list = []
                         my_list.append(word)
-                    if len(my_list[0]) < len(word):
+                        longest = len(word)
+                    if longest == len(word):
                         my_list.append(word)
             return my_list
     except FileNotFoundError:
@@ -20,6 +23,7 @@ def main():
     f = input('Give me a file: ')
     result = sorter(f)
     if result is not False:
+
         print(result)
 
 
