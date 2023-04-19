@@ -12,11 +12,11 @@ def scrub(ine):
                             if prevline[0] != '#':
                                 aline[1] = aline[1].strip(':')
                                 res.append(f'File: {ine} contains a function [{aline[1]}] on line [{num}]\
- without preceding comment.')
+ a without preceding comment.')
                         else:
                             aline[1] = aline[1].strip(':')
                             res.append(f'File: {ine} contains a function [{aline[1]}] on line [{num}]\
- without preceding comment.')
+ a without preceding comment.')
                 prevline = line
                 num += 1
             return res
@@ -26,6 +26,16 @@ def scrub(ine):
 
 def main():
     ine = input('File to read: ').split(', ')
+    for i in ine:
+        content = scrub(i)
+        if content is False:
+            print('Error')
+        for res in content:
+            print(res)
+
+
+if __name__ == '__main__':
+    main()
     for i in ine:
         content = scrub(i)
         if content is False:
