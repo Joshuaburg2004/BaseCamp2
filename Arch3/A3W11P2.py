@@ -128,8 +128,8 @@ def read_csv(filename):
             banned_video_games_list.append(line)
 
 
-def write_to_csv(filename):
-    with open(filename, 'w', encoding='UTF-8') as f:
+def write_to_csv():
+    with open('new.csv', 'w', encoding='UTF-8') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(banned_video_games_list)
@@ -155,7 +155,7 @@ def main(filename):
             overview()
         if mover == 's':
             search()
-        write_to_csv(filename)
+        write_to_csv()
 
 
 if __name__ == "__main__":
