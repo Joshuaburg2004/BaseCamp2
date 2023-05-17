@@ -23,7 +23,6 @@ def main():
     f = input('Give me a file: ')
     result = sorter(f)
     if result is not False:
-
         print(result)
 
 
