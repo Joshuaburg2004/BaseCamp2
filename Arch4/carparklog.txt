@@ -1,0 +1,1 @@
+2023-05-10 10:20:04.905739;cpm_name=North;license_plate=[o];action=check-out;parking_fee=2
